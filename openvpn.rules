@@ -1,6 +1,38 @@
-# Connexion OK d'un client
-# Fri May  6 08:00:00 2016 <IP_CLIENT>:<PORT_CLIENT> VERIFY OK: depth=0, C=<COUNTRY_CODE>, ST=<COUNTRY>, L=<LOCALITY>, O=<ORGANIZATION>, OU=<ORGANIZATION_UNIT>, CN=<COMMON_NAME>, name=<CLIENT_NAME>, emailAddress=<CLIENT_MAIL>
+# Wed Sep 14 08:00:00 2016 <CLIENT_IP>:<CLIENT_PORT> [<CLIENT_NAME>] Peer Connection Initiated with [AF_INET]<CLIENT_IP>:<CLIENT_PORT>
+regex=(\S+):(\d+) \[(\S+)\] Peer Connection Initiated with \[AF_INET\](\S+):(\d+); \
+ classification.text=Successfull OpenVPN connection; \
+ revision=1; \
+ analyzer(0).name=openvpn; \
+ analyzer(0).manufacturer=OpenVPN; \
+ analyzer(0).class=Authentication; \
+ assessment.impact.severity=low; \
+ assessment.impact.completion=succeeded; \
+ assessment.impact.type=user; \
+ assessment.impact.description=$3 successfully connected from $1:$2; \
+ source(0).node.address(0).address=$1; \
+ source(0).service.port=$2; \
+ target(0).service.port=1194; \
+ target(0).service.name=openvpn; \
+ target(0).user.category=os-device; \
+ target(0).user.user_id(0).name=$3; \
+ last;
 
-# Deconnexion d'un client
-# Tue Sep  6 08:00:00 2016 <CLIENT_NAME>/<IP_CLIENT>:<PORT_CLIENT> Connection reset, restarting [0]
+# Tue Sep  6 08:00:00 2016 <CLIENT_NAME>/<CLIENT_IP>:<CLIENT_PORT> Connection reset, restarting [0]
+regex=(\S+)\/(\S+):(\d+) Connection reset, restarting \[(\d+)\]; \
+ classification.text=OpenVPN end of connection; \
+ revision=1; \
+ analyzer(0).name=openvpn; \
+ analyzer(0).manufacturer=OpenVPN; \
+ analyzer(0).class=Authentication; \
+ assessment.impact.severity=low; \
+ assessment.impact.completion=succeeded; \
+ assessment.impact.type=user; \
+ assessment.impact.description=$1 disconnected from $2:$3; \
+ source(0).node.address(0).address=$2; \
+ source(0).service.port=$3; \
+ target(0).service.port=1194; \
+ target(0).service.name=openvpn; \
+ target(0).user.category=os-device; \
+ target(0).user.user_id(0).name=$1; \
+ last;
 
