@@ -1,0 +1,6 @@
+# Connexion OK d'un client
+# Fri May  6 08:00:00 2016 <IP_CLIENT>:<PORT_CLIENT> VERIFY OK: depth=0, C=<COUNTRY_CODE>, ST=<COUNTRY>, L=<LOCALITY>, O=<ORGANIZATION>, OU=<ORGANIZATION_UNIT>, CN=<COMMON_NAME>, name=<CLIENT_NAME>, emailAddress=<CLIENT_MAIL>
+
+# Deconnexion d'un client
+# Tue Sep  6 08:00:00 2016 <CLIENT_NAME>/<IP_CLIENT>:<PORT_CLIENT> Connection reset, restarting [0]
+
